@@ -46802,25 +46802,45 @@ ion-navbar.toolbar {
 }
 
 .modal-wrapper {
-  left: 35px;
-  top: 35px;
+  left: 400px;
+  top: 80px;
   position: absolute;
-  width: calc(100% - 70px);
-  height: calc(100% - 70px);
+  width: calc(100% - 800px);
+  height: calc(100% - 160px);
 }
 
-.popover-content {
+.alert-popover .popover-content {
   width: 366px !important;
   left: auto !important;
   margin-top: 2.5% !important;
   right: 60px !important;
 }
 
-.popover-content .item {
+.alert-popover .popover-content .item {
   background-color: #7b9e2a !important;
   color: white;
 }
 
-.popover-content .list-md {
+.alert-popover .popover-content .list-md {
   margin: 0;
+}
+
+.timepicker-popover .popover-content {
+  width: 150px !important;
+  margin-top: 4% !important;
+  text-align: center;
+}
+
+.timepicker-popover .popover-content .item {
+  background-color: #bd3e4d !important;
+  color: white;
+  border-radius: 20px;
+}
+
+.timepicker-popover .popover-content .list-md {
+  margin: 0 !important;
+}
+
+button#undefined.item-cover.item-cover-md.item-cover-default.item-cover-default-md {
+  display: none;
 }

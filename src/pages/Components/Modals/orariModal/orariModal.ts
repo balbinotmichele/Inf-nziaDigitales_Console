@@ -1,3 +1,4 @@
+import { PopoverTimepicker } from './popoverTimepicker';
 import { PopoverPage } from './popoverOrari';
 import { Time } from './../../../../app/Classes/time';
 import { Service } from './../../../../app/Classes/service';
@@ -13,6 +14,18 @@ import { NavParams, NavController, AlertController, PopoverController, ViewContr
 @Component({
   selector: 'orari-modal',
   templateUrl: 'orariModal.html',
+  styles: [
+      `
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        ion-card-header {
+            font-size: 20px !important;
+            background-color: rgba(152,186,60, .4);
+        }
+      `
+  ]
 })
 
 export class OrariModal implements OnInit{
@@ -41,17 +54,7 @@ export class OrariModal implements OnInit{
     }
 
     ngOnInit() {
-        this.late = this.copiedOrario.fasce[0].end;
-        for(var i = 0; i<this.copiedOrario.fasce.length-1; i++) {
-            if(this.late.localeCompare(this.copiedOrario.fasce[i].end) < 0)
-                this.late = this.copiedOrario.fasce[i].end;
-        }
-
-        this.early = this.copiedOrario.fasce[0].start;
-        for(var i = 0; i < this.copiedOrario.fasce.length-1; i++) {
-            if(this.early.localeCompare(this.copiedOrario.fasce[i].start) < 0)
-                this.early = this.copiedOrario.fasce[i].start;
-        }
+        
     }
 
     close() {
@@ -106,24 +109,24 @@ export class OrariModal implements OnInit{
         this.copiedOrario.fasce.sort((item1, item2) => item1.start.localeCompare(item2.start));
         if(this.copiedOrario.fasce.length > 1)
             for(var i = 1; i < this.copiedOrario.fasce.length; i++) {
-                if(this.isBetween(this.copiedOrario.fasce[i].start, this.copiedOrario.fasce[i-1].start, this.copiedOrario.fasce[i-1].end) || this.isBetweenSchool(fascia.start) || this.isBetweenSchool(fascia.end) )  {
+                if(this.isBetween(this.copiedOrario.fasce[i].name, this.copiedOrario.fasce[i].start, this.copiedOrario.fasce[i-1].start, this.copiedOrario.fasce[i-1].end, this.copiedOrario.fasce[i-1].name) || this.isBetweenSchool(fascia.name, fascia.start) || this.isBetweenSchool(fascia.name, fascia.end) )  {
                     this.sovrapp = true; return;
                 }
                 else this.sovrapp = false;
             }
         else
-            this.sovrapp = this.isBetweenSchool(fascia.start);
+            this.sovrapp = this.isBetweenSchool(fascia.name, fascia.start);
     }
 
-    isBetween (date:string, start:string, end: string) {
-        return date.localeCompare(start) >= 0 && date.localeCompare(end) < 0
+    isBetween (dateName:string, date:string, start:string, end: string, name:string) {
+        return date.localeCompare(start) > 0 && date.localeCompare(end) < 0 && dateName !== name
     }
 
-    isBetweenSchool (date:string) {
+    isBetweenSchool (dateName:string, date:string) {
         var ret;
         for(var element of this.selectedSchool.servizi) {
             for(var i = 0; i < element.fasce.length; i++) {
-                ret = this.isBetween(date, element.fasce[i].start, element.fasce[i].end);
+                ret = this.isBetween(dateName, date, element.fasce[i].start, element.fasce[i].end, element.fasce[i].name);
                 if (ret) break;
             }
             if (ret) break;
@@ -133,10 +136,21 @@ export class OrariModal implements OnInit{
 
     sovraPopover(ev) {
         if(this.sovrapp) {
-            let popover = this.popoverCtrl.create(PopoverPage);
+            let popover = this.popoverCtrl.create(PopoverPage, {}, {cssClass: 'alert-popover'});
             popover.present({
                 ev : ev
             });
         }
+    }
+
+    timepickerPresent(ev, item, ctrl) {
+        let popover = this.popoverCtrl.create(PopoverTimepicker, {'oggetto' : item, 'ctrl': ctrl}, {cssClass: 'timepicker-popover'});
+        popover.present({
+            ev : ev
+        });
+
+        popover.onWillDismiss(() => {
+            this.changeFascia(item);
+        })
     }
 }

@@ -18,74 +18,65 @@
     <ion-list inset>
         <ion-grid inset>
             <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>ID (C.F.)*</ion-label>
-                        <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.id" [disabled]='!isNew'></ion-input>
-                    </ion-item>
+                <ion-col col-10 offset-1>
+                    <ion-card>
+                        <ion-card-header>
+                            Informazioni di base
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-item>
+                                <ion-label floating>ID (C.F.)*</ion-label>
+                                <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.id" [disabled]='!isNew'></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Nome*</ion-label>
+                                <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.name"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Cognome*</ion-label>
+                                <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.surname"></ion-input>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
                 </ion-col>
-                <ion-col col-2><p></p></ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>Nome*</ion-label>
-                        <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.name"></ion-input>
-                    </ion-item>
+                <ion-col col-10 offset-1>
+                    <ion-card>
+                        <ion-card-header>
+                            Contatti
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-item>
+                                <ion-label floating>Telefono</ion-label>
+                                <ion-input name="tel" type="text" [(ngModel)]="copiedTeacher.telephone"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>Cellulare</ion-label>
+                                <ion-input name="tel" type="text" [(ngModel)]="copiedTeacher.cellphone"></ion-input>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
                 </ion-col>
-                <ion-col col-2><p></p></ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>Cognome*</ion-label>
-                        <ion-input name="name" type="text" [(ngModel)]="copiedTeacher.surname"></ion-input>
-                    </ion-item>
+                <ion-col col-10 offset-1>
+                    <ion-card>
+                        <ion-card-header>
+                            Accesso
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-item>
+                                <ion-label floating>E-Mail</ion-label>
+                                <ion-input name="email" type="text" [(ngModel)]="copiedTeacher.email"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label floating>PIN*</ion-label>
+                                <ion-input name="text" type="text" [(ngModel)]="copiedTeacher.pin"></ion-input>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
                 </ion-col>
-                <ion-col col-2><p></p></ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>Telefono</ion-label>
-                        <ion-input name="tel" type="text" [(ngModel)]="copiedTeacher.telephone"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-2><p></p></ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>Cellulare</ion-label>
-                        <ion-input name="tel" type="text" [(ngModel)]="copiedTeacher.cellphone"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-2><p></p></ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>E-Mail</ion-label>
-                        <ion-input name="email" type="text" [(ngModel)]="copiedTeacher.email"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-2><p></p></ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col col-2><p></p></ion-col>
-                <ion-col col-8>
-                    <ion-item>
-                        <ion-label floating>PIN*</ion-label>
-                        <ion-input name="text" type="text" [(ngModel)]="copiedTeacher.pin"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-2><p></p></ion-col>
             </ion-row>
         </ion-grid>
     </ion-list>
