@@ -2,6 +2,7 @@
     <ion-navbar>
         <ion-title>
              {{selectedGroup.name}} 
+             <span *ngIf="selectedGroup.name===''">Nuovo gruppo</span> 
         </ion-title>
         <ion-buttons start>
             <button ion-button (click)="close()">Annulla</button>
@@ -24,8 +25,8 @@
                     </ion-card-header>
                     <ion-card-content>
                         <ion-list inset>
-                            <ion-item>
-                                <ion-label floating>Nome*</ion-label>
+                            <ion-item class="input-calza">
+                                <ion-label>Nome*</ion-label>
                                 <ion-input name="name" type="text" [(ngModel)]="copiedGroup.name"></ion-input>
                             </ion-item>
                             <ion-item margin-top>
@@ -49,7 +50,7 @@
                                 {{tea.name}} {{tea.surname}}
                                 <ion-icon name="close" float-end (click)="removeTeacher(tea)"></ion-icon>
                             </ion-item>
-                            <button ion-button color="green1" (click)='addTeacher()' margin-top><ion-icon name="add"></ion-icon> Aggiungi insegnanti</button>
+                            <button ion-button color="green1" (click)='addTeacher()' margin-top>Aggiungi insegnanti</button>
                         </ion-list>
                     </ion-card-content>
                 </ion-card>
@@ -70,7 +71,7 @@
                                 {{kid.name}} {{kid.surname}}
                                 <ion-icon name="close" float-end (click)="removeKid(kid.id)"></ion-icon>
                             </ion-item>
-                            <button ion-button color="green1" (click)='addKid()' margin-top><ion-icon name="add"></ion-icon> Aggiungi bambini</button>
+                            <button ion-button color="green1" (click)='addKid()' margin-top>Aggiungi bambini</button>
                         </ion-list>  
                     </ion-card-content>
                 </ion-card>

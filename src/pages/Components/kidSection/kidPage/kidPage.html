@@ -2,7 +2,12 @@
     <ion-row>
         <ion-col col-1><p></p></ion-col>
         <ion-col col-10>
-            <button ion-button color='green1' float-start margin-top (click)='goBack()'><ion-icon name='arrow-round-back' margin-right></ion-icon> Dettagli di {{selectedKid.name}} {{selectedKid.surname}}</button>
+            <button *ngIf="!isNew"  ion-button color='green1' float-start margin-top (click)='goBack()'><ion-icon name='arrow-round-back' margin-right></ion-icon> 
+                Dettagli di {{selectedKid.name}} {{selectedKid.surname}}
+            </button>
+            <button *ngIf="isNew"  ion-button color='green1' float-start margin-top (click)='goBack()'><ion-icon name='arrow-round-back' margin-right></ion-icon> 
+                Nuovo bambino
+            </button>
         </ion-col>
         <ion-col col-1><p></p></ion-col>
     </ion-row>
@@ -541,13 +546,6 @@
                                                     </ion-card>
                                                 </ion-col>
                                             </ion-row>
-                                            <!-- <ion-row>
-                                                <ion-col col-sm-12>
-                                                    <button ion-button color='magenta1' float-end margin-top (click)='editDClick()' *ngIf="!editD">Modifica</button>
-                                                    <button ion-button color='magenta1' float-end margin-top (click)='saveDClick()' *ngIf="editD" [disabled]='(selectedDelega.id == "" || selectedDelega.name == "" || selectedDelega.surname == "")'>Salva</button>
-                                                    <button ion-button color='grey2' float-end margin-top (click)='cancelDClick()' *ngIf="editD">Annulla modifiche</button>
-                                                </ion-col>
-                                            </ion-row> -->
                                         </ion-grid>
                                         </ion-card-content>
                                     </ion-card>
@@ -557,15 +555,6 @@
                     </ion-grid>
                 </div>
             </div>
-        </ion-col>
-        <ion-col col-1><p></p></ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col col-1><p></p></ion-col>
-        <ion-col col-sm-10>
-            <button ion-button color='magenta1' float-end margin-top (click)='editClick()' *ngIf="!edit && kidSettings!=='autorizza'">Modifica</button>
-            <button ion-button color='magenta1' float-end margin-top (click)='saveClick()' *ngIf="edit && kidSettings!=='autorizza'" [disabled]='(thisKid.id == "" || thisKid.name == "" || thisKid.surname == "")'>Salva</button>
-            <button ion-button color='grey2' float-end margin-top (click)='cancelClick()' *ngIf="edit && kidSettings!=='autorizza'">Annulla modifiche</button>
         </ion-col>
         <ion-col col-1><p></p></ion-col>
     </ion-row>

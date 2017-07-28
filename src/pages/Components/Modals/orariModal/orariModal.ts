@@ -89,6 +89,7 @@ export class OrariModal implements OnInit{
 
     removeFascia(fascia : Time) {
         this.copiedOrario.fasce.splice(this.copiedOrario.fasce.findIndex(t=>t.name.toLowerCase() === fascia.name.toLowerCase()), 1);
+        this.disable = this.copiedOrario.fasce.findIndex(t=>t.name.toLowerCase() === '') >= 0;
     }
 
     disable : boolean;
