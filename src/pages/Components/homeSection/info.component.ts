@@ -14,11 +14,6 @@ import { Component, OnInit, Input } from '@angular/core';
         font-size: 20px !important;
         background-color: rgba(152,186,60, .4);
     }
-    .edit {
-        height: 30px;
-        margin: -3px auto;
-    }
-
     .text-input {
         border: solid 1px black;
         border-radius: 7px 7px 7px 7px;

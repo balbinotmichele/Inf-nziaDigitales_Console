@@ -46844,3 +46844,8 @@ ion-navbar.toolbar {
 button#undefined.item-cover.item-cover-md.item-cover-default.item-cover-default-md {
   display: none;
 }
+
+.edit {
+  height: 30px;
+  margin: -3px auto;
+}

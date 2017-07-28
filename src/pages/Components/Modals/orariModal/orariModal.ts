@@ -109,24 +109,33 @@ export class OrariModal implements OnInit{
         this.copiedOrario.fasce.sort((item1, item2) => item1.start.localeCompare(item2.start));
         if(this.copiedOrario.fasce.length > 1)
             for(var i = 1; i < this.copiedOrario.fasce.length; i++) {
-                if(this.isBetween(this.copiedOrario.fasce[i].name, this.copiedOrario.fasce[i].start, this.copiedOrario.fasce[i-1].start, this.copiedOrario.fasce[i-1].end, this.copiedOrario.fasce[i-1].name) || this.isBetweenSchool(fascia.name, fascia.start) || this.isBetweenSchool(fascia.name, fascia.end) )  {
+                if(this.isBetween(this.copiedOrario.fasce[i].name, this.copiedOrario.fasce[i].start, this.copiedOrario.fasce[i-1].start, this.copiedOrario.fasce[i-1].end, this.copiedOrario.fasce[i-1].name, null) || this.isBetweenSchool(fascia))  {
                     this.sovrapp = true; return;
                 }
                 else this.sovrapp = false;
             }
         else
-            this.sovrapp = this.isBetweenSchool(fascia.name, fascia.start);
+            this.sovrapp = this.isBetweenSchool(fascia);
     }
 
-    isBetween (dateName:string, date:string, start:string, end: string, name:string) {
-        return date.localeCompare(start) > 0 && date.localeCompare(end) < 0 && dateName !== name
+    isBetween (dateName:string, date:string, start:string, end: string, name:string, dateF:string) {
+        if(dateF === null) {
+            return dateName !== name && (date.localeCompare(start) > 0 && date.localeCompare(end) < 0)
+        }
+        else {
+            return dateName !== name && 
+            ((date.localeCompare(start) > 0 && date.localeCompare(end) < 0) || //inizio interno ad una fascia
+            (dateF.localeCompare(start) > 0 && dateF.localeCompare(end) < 0) ||  //fine interna a una fascia
+            (date.localeCompare(start) <= 0 && dateF.localeCompare(end) >= 0) ||  //inizia prima di o assieme a una fascia e finisce dopo o assieme
+            (date.localeCompare(dateF) >= 0))
+        } 
     }
 
-    isBetweenSchool (dateName:string, date:string) {
+    isBetweenSchool (fascia : Time) {
         var ret;
         for(var element of this.selectedSchool.servizi) {
             for(var i = 0; i < element.fasce.length; i++) {
-                ret = this.isBetween(dateName, date, element.fasce[i].start, element.fasce[i].end, element.fasce[i].name);
+                ret = this.isBetween(fascia.name, fascia.start, element.fasce[i].start, element.fasce[i].end, element.fasce[i].name, fascia.end);
                 if (ret) break;
             }
             if (ret) break;
