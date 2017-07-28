@@ -33,7 +33,7 @@ import { NavController, AlertController, ModalController } from 'ionic-angular';
 export class HomePage implements OnInit {
   schools: School[];
 
-  settings:string = "servizi";
+  settings:string = "profilo";
 
   selectedSchool : School;
   selectedId : string;
